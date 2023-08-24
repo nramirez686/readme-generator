@@ -18,28 +18,28 @@ fetchLicenseNames()
       },
       {
         type: "input",
-        name: "title",
-        message: "Project Description",
+        name: "description",
+        message: "Description",
       },
       {
         type: "input",
-        name: "installation steps",
+        name: "installationSteps",
         message: "What are the steps required to install your project?",
       },
       {
         type: "input",
-        name: "Usage",
+        name: "usage",
         message: "How do you use you project?",
       },
       {
         type: "input",
-        name: "Credits",
+        name: "credits",
         message:
           "Did you have any collaborators, third party assets or any tutorials you followed?",
       },
       {
         type: "list",
-        name: "License",
+        name: "license",
         message: "What license did you use?",
         choices: licenseChoices,
       },
@@ -57,13 +57,21 @@ fetchLicenseNames()
     }
     // Created a function to initialize app
     function init() {
-      let licenseData;
       inquirer.prompt(questions).then((answers) => {
+        console.log("answers:", answers);
+        const data = {
+          title: answers.title,
+          description: answers.description,
+          installationSteps: answers.installationSteps,
+          usage: answers.usage,
+          credits: answers.credits,
+          license: answers.license,
+        };
         fetchLicense(answers.license)
           .then((licenseData) => {
+            console.log("License Data:", licenseData);
             answers.licenseData = licenseData;
-            const markdownPromise = generateMarkdown(answers);
-            return markdownPromise; // Return the promise to the next `.then`
+            return generateMarkdown(answers); // Return the promise to the next `.then`
           })
           .then((markdown) => {
             writeToFile("README.md", markdown);

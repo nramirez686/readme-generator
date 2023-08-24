@@ -1,5 +1,4 @@
 function fetchLicense(licenseName) {
-  const apiKey = "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";
   const url = `https://api.github.com/licenses/${licenseName}`;
   return fetch(url)
     .then((response) => response.json())
@@ -99,4 +98,8 @@ function generateMarkdown(data) {
   });
 }
 
-module.exports = { generateMarkdown, fetchLicenseNames, fetchLicense };
+module.exports = {
+  generateMarkdown,
+  fetchLicenseNames,
+  fetchLicense,
+};
