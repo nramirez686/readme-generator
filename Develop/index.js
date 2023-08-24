@@ -57,18 +57,23 @@ fetchLicenseNames()
     }
     // Created a function to initialize app
     function init() {
+      let licenseData;
       inquirer.prompt(questions).then((answers) => {
         fetchLicense(answers.license)
           .then((licenseData) => {
             answers.licenseData = licenseData;
-            const markdown = generateMarkdown(answers);
+            const markdownPromise = generateMarkdown(answers);
+            return markdownPromise; // Return the promise to the next `.then`
+          })
+          .then((markdown) => {
             writeToFile("README.md", markdown);
           })
           .catch((error) => {
-            console.error("Error fetching license data:", error);
+            console.error("Error:", error);
           });
       });
     }
+
     //Function call to initialize app
     init();
   })

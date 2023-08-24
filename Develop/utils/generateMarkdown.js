@@ -63,7 +63,7 @@ function renderLicenseSection(licenseData) {
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  const licensePromise = fetchLicenseData(data.license);
+  const licensePromise = fetchLicense(data.license);
   return licensePromise.then((licenseData) => {
     const licenseBadge = renderLicenseBadge(licenseData);
     const licenseLink = renderLicenseLink(licenseData);
