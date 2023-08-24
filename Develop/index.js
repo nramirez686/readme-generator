@@ -19,7 +19,7 @@ fetchLicenseNames()
       {
         type: "input",
         name: "description",
-        message: "Description",
+        message: "description",
       },
       {
         type: "input",
@@ -43,6 +43,16 @@ fetchLicenseNames()
         message: "What license did you use?",
         choices: licenseChoices,
       },
+      {
+        type: "input",
+        name: "questions",
+        message: "Enter your email address",
+      },
+      {
+        type: "input",
+        name: "username",
+        message: "Enter GitHub username",
+      },
     ];
 
     //Created a function to write README file
@@ -55,7 +65,7 @@ fetchLicenseNames()
         }
       });
     }
-    // Created a function to initialize app
+    // Created a function to initialize app with user inputs
     function init() {
       inquirer.prompt(questions).then((answers) => {
         console.log("answers:", answers);
@@ -66,6 +76,8 @@ fetchLicenseNames()
           usage: answers.usage,
           credits: answers.credits,
           license: answers.license,
+          email: answers.questions,
+          username: answers.username,
         };
         fetchLicense(answers.license)
           .then((licenseData) => {

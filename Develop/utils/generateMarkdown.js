@@ -59,7 +59,11 @@ function renderLicenseSection(licenseData) {
     return "";
   }
 }
+//function to create usernmae link to github
 
+function generateGitHubProfileLink(username) {
+  return `https://github.com/${username}`;
+}
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   const licensePromise = fetchLicense(data.license);
@@ -73,14 +77,14 @@ function generateMarkdown(data) {
 
   ## Description
 
-  ${data.projectDescription}
-
+  ${data.description}
+  
   ## Table of Contents
   - [Installation](#installation)
   - [Usage](#usage)
   - [Credits](#credits)
-  
-  ${licenseLink}
+  - [License](#license)
+  - [Questions](#questions)
   
   ## Installation
   
@@ -94,7 +98,13 @@ function generateMarkdown(data) {
   
   ${data.credits}
   
-  ${licenseSection}`;
+  ${licenseSection}
+  ${licenseLink}
+  
+  ## Questions
+For questions about this project, please contact:
+- Email: ${data.email}
+- GitHub: [@${data.username}](${generateGitHubProfileLink(data.username)})`;
   });
 }
 
