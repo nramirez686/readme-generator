@@ -30,6 +30,7 @@
     "fetch-blob": "^3.2.0",
     "figures": "^3.2.0",
     "formdata-polyfill": "^4.0.10",
+    "fs": "^0.0.1-security",
     "has-flag": "^4.0.0",
     "iconv-lite": "^0.4.24",
     "ieee754": "^1.2.1",
